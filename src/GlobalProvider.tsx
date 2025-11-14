@@ -28,9 +28,13 @@ export const filteredPeople = (
   }
 
   if (query) {
-    newPeopleList = newPeopleList.filter(person =>
-      person.name.toLowerCase().includes(query.toLowerCase()),
-    );
+    const queryLower = query.toLowerCase();
+
+    newPeopleList = newPeopleList.filter(person => {
+      const searchField = [person.name, person.motherName, person.fatherName];
+
+      return searchField.some(fild => fild?.toLowerCase().includes(queryLower));
+    });
   }
 
   if (centuries.length !== 0) {
@@ -79,7 +83,7 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const [searchParam] = useSearchParams();
 
   const centuries = searchParam.getAll('centuries');
-  const query = searchParam.get('qwery');
+  const query = searchParam.get('query');
   const sex = searchParam.get('sex');
   const sort = searchParam.get('sort');
   const order = searchParam.get('order');

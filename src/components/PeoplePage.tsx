@@ -37,7 +37,7 @@ export const PeoplePage = () => {
                 </p>
               )}
 
-              {visiblePeoplelist.length === 0 && !loader && !errorMessage && (
+              {visiblePeoplelist.length === 0 && peopleList.length !== 0 && (
                 <p>There are no people matching the current search criteria</p>
               )}
 

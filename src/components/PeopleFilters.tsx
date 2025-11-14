@@ -7,7 +7,7 @@ import { getSearchWith, SearchParams } from '../utils/searchHelper';
 export const PeopleFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const centuries = searchParams.getAll('centuries') || [];
-  const qwery = searchParams.get('qwery') || '';
+  const query = searchParams.get('query') || '';
   const sex = searchParams.get('sex') || '';
 
   function setSearchWith(params: SearchParams) {
@@ -17,7 +17,7 @@ export const PeopleFilters = () => {
   }
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchWith({ qwery: event.target.value || null });
+    setSearchWith({ query: event.target.value || null });
   };
 
   const toggleNumbers = (ch: string) => {
@@ -57,7 +57,7 @@ export const PeopleFilters = () => {
         <p className="control has-icons-left">
           <input
             data-cy="NameFilter"
-            value={qwery}
+            value={query}
             type="search"
             className="input"
             placeholder="Search"
